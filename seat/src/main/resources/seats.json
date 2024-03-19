@@ -1,0 +1,72 @@
+[
+  {
+    "id": 0,
+    "seatClass": "primera",
+    "seatStatus": "ocupado",
+    "seatLocation": "pasillo",
+    "seatLabel": "E-3"
+  },
+  {
+    "id": 1,
+    "seatClass": "ejecutiva",
+    "seatStatus": "disponible",
+    "seatLocation": "ventana",
+    "seatLabel": "D-2"
+  },
+  {
+    "id": 2,
+    "seatClass": "ejecutiva",
+    "seatStatus": "disponible",
+    "seatLocation": "ventana",
+    "seatLabel": "A-2"
+  },
+  {
+    "id": 3,
+    "seatClass": "ejecutiva",
+    "seatStatus": "disponible",
+    "seatLocation": "ventana",
+    "seatLabel": "B-2"
+  },
+  {
+    "id": 4,
+    "seatClass": "ejecutiva",
+    "seatStatus": "ocupado",
+    "seatLocation": "ventana",
+    "seatLabel": "D-3"
+  },
+  {
+    "id": 5,
+    "seatClass": "primera",
+    "seatStatus": "ocupado",
+    "seatLocation": "pasillo",
+    "seatLabel": "B-3"
+  },
+  {
+    "id": 6,
+    "seatClass": "turista",
+    "seatStatus": "disponible",
+    "seatLocation": "pasillo",
+    "seatLabel": "E-1"
+  },
+  {
+    "id": 7,
+    "seatClass": "turista",
+    "seatStatus": "disponible",
+    "seatLocation": "central",
+    "seatLabel": "D-1"
+  },
+  {
+    "id": 8,
+    "seatClass": "primera",
+    "seatStatus": "ocupado",
+    "seatLocation": "pasillo",
+    "seatLabel": "B-2"
+  },
+  {
+    "id": 9,
+    "seatClass": "ejecutiva",
+    "seatStatus": "disponible",
+    "seatLocation": "central",
+    "seatLabel": "C-3"
+  }
+]
