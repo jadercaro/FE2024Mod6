@@ -43,4 +43,9 @@ public class SeatService {
         }
     }
 
+    // Método para crear la distribución de los asientos
+    // public List<List<Seat>> createSeatDistribution()
+
+
+
 }

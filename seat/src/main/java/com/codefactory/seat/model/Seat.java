@@ -7,16 +7,18 @@ public class Seat {
     private String seatStatus;
     private String seatLocation;
     private String seatLabel;
+    private String seatFee; // Recargo del asiento
 
     public Seat() {
     }
 
-    public Seat(int id, String seatClass, String seatStatus, String seatLocation, String seatLabel) {
+    public Seat(int id, String seatClass, String seatStatus, String seatLocation, String seatLabel, String seatFee) {
         this.id = id;
         this.seatClass = seatClass;
         this.seatStatus = seatStatus;
         this.seatLocation = seatLocation;
         this.seatLabel = seatLabel;
+        this.seatFee = seatFee;
     }
 
     public int getId() {
@@ -39,6 +41,10 @@ public class Seat {
         return seatStatus;
     }
 
+    public String getSeatFee() {
+        return seatFee;
+    }
+
     public void setSeatStatus(String seatStatus) {
         this.seatStatus = seatStatus;
     }
@@ -57,6 +63,10 @@ public class Seat {
 
     public void setSeatLabel(String seatLabel) {
         this.seatLabel = seatLabel;
+    }
+
+    public void setSeatFee(String seatFee) {
+        this.seatFee = seatFee;
     }
 
     @Override
