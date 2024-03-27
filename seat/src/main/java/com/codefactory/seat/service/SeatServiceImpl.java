@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
-public class SeatService {
+public class SeatServiceImpl implements ISeat {
 
     private Stream<Seat> prepareStreamOfSeats() {
         try {
@@ -45,7 +45,19 @@ public class SeatService {
 
     // Método para crear la distribución de los asientos
     // public List<List<Seat>> createSeatDistribution()
+    @Override
+    public Double getTotalFee() {
+        return null;
+    }
 
+    @Override
+    public Double getSeatFee() {
+        return null;
+    }
 
+    @Override
+    public void assignSeatsRandomly() {
+
+    }
 
 }
