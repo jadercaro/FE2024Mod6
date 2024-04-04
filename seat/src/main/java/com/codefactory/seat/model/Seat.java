@@ -1,8 +1,14 @@
 package com.codefactory.seat.model;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Seat {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ")
+    @SequenceGenerator(name = "SEQ", sequenceName = "SEAT_SEQ", allocationSize = 1)
+    private Long id;
     private String seatClass;
     private String seatStatus;
     private String seatLocation;
@@ -12,7 +18,7 @@ public class Seat {
     public Seat() {
     }
 
-    public Seat(int id, String seatClass, String seatStatus, String seatLocation, String seatLabel, String seatFee) {
+    public Seat(Long id, String seatClass, String seatStatus, String seatLocation, String seatLabel, String seatFee) {
         this.id = id;
         this.seatClass = seatClass;
         this.seatStatus = seatStatus;
@@ -21,11 +27,11 @@ public class Seat {
         this.seatFee = seatFee;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

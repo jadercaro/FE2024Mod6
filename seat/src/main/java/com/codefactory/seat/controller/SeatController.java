@@ -13,12 +13,5 @@ import java.util.List;
 @RequestMapping("/seats")
 public class SeatController {
 
-    @Autowired
-    private ISeat seatServiceImpl;
-
-    @GetMapping("/getAvailableSeats")
-    public List<List<Seat>> getAvailableSeats(){
-        return seatServiceImpl.getAvailableSeats();
-    }
 
 }
