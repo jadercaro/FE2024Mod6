@@ -9,7 +9,10 @@ public class Seat {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ")
     @SequenceGenerator(name = "SEQ", sequenceName = "SEAT_SEQ", allocationSize = 1)
     private Long id;
-    private String seatClass;
+
+    @ManyToOne(cascade=CascadeType.PERSIST)
+    @JoinColumn(name="seatClass")
+    private SeatClass seatClass;
     private String seatStatus;
     private String seatLocation;
     private String seatLabel;
@@ -18,8 +21,20 @@ public class Seat {
     public Seat() {
     }
 
-    public Seat(Long id, String seatClass, String seatStatus, String seatLocation, String seatLabel, String seatFee) {
+    public Seat(Long id, SeatClass seatClass, String seatStatus, String seatLocation, String seatLabel, String seatFee) {
         this.id = id;
+        this.seatClass = seatClass;
+        this.seatStatus = seatStatus;
+        this.seatLocation = seatLocation;
+        this.seatLabel = seatLabel;
+        this.seatFee = seatFee;
+    }
+
+    public Seat(SeatClass seatClass,
+                String seatStatus,
+                String seatLocation,
+                String seatLabel,
+                String seatFee) {
         this.seatClass = seatClass;
         this.seatStatus = seatStatus;
         this.seatLocation = seatLocation;
@@ -35,11 +50,11 @@ public class Seat {
         this.id = id;
     }
 
-    public String getSeatClass() {
+    public SeatClass getSeatClass() {
         return seatClass;
     }
 
-    public void setSeatClass(String seatClass) {
+    public void setSeatClass(SeatClass seatClass) {
         this.seatClass = seatClass;
     }
 
