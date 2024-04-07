@@ -13,15 +13,25 @@ public class Seat {
     @ManyToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name="seatClass")
     private SeatClass seatClass;
-    private String seatStatus;
-    private String seatLocation;
+
+    @ManyToOne(cascade=CascadeType.PERSIST)
+    @JoinColumn(name="seatStatus")
+    private SeatStatus seatStatus;
+    @ManyToOne(cascade=CascadeType.PERSIST)
+    @JoinColumn(name="seatLocation")
+    private SeatLocation seatLocation;
     private String seatLabel;
     private String seatFee; // Recargo del asiento
 
     public Seat() {
     }
 
-    public Seat(Long id, SeatClass seatClass, String seatStatus, String seatLocation, String seatLabel, String seatFee) {
+    public Seat(Long id,
+                SeatClass seatClass,
+                SeatStatus seatStatus,
+                SeatLocation seatLocation,
+                String seatLabel,
+                String seatFee) {
         this.id = id;
         this.seatClass = seatClass;
         this.seatStatus = seatStatus;
@@ -31,8 +41,8 @@ public class Seat {
     }
 
     public Seat(SeatClass seatClass,
-                String seatStatus,
-                String seatLocation,
+                SeatStatus seatStatus,
+                SeatLocation seatLocation,
                 String seatLabel,
                 String seatFee) {
         this.seatClass = seatClass;
@@ -58,7 +68,7 @@ public class Seat {
         this.seatClass = seatClass;
     }
 
-    public String getSeatStatus() {
+    public SeatStatus getSeatStatus() {
         return seatStatus;
     }
 
@@ -66,15 +76,15 @@ public class Seat {
         return seatFee;
     }
 
-    public void setSeatStatus(String seatStatus) {
+    public void setSeatStatus(SeatStatus seatStatus) {
         this.seatStatus = seatStatus;
     }
 
-    public String getSeatLocation() {
+    public SeatLocation getSeatLocation() {
         return seatLocation;
     }
 
-    public void setSeatLocation(String seatLocation) {
+    public void setSeatLocation(SeatLocation seatLocation) {
         this.seatLocation = seatLocation;
     }
 
@@ -94,10 +104,11 @@ public class Seat {
     public String toString() {
         return "Seat{" +
                 "id=" + id +
-                ", seatClass='" + seatClass + '\'' +
-                ", seatStatus='" + seatStatus + '\'' +
+                ", seatClass=" + seatClass +
+                ", seatStatus=" + seatStatus +
                 ", seatLocation='" + seatLocation + '\'' +
                 ", seatLabel='" + seatLabel + '\'' +
+                ", seatFee='" + seatFee + '\'' +
                 '}';
     }
 }

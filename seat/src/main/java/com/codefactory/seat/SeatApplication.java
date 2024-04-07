@@ -2,6 +2,8 @@ package com.codefactory.seat;
 
 import com.codefactory.seat.model.Seat;
 import com.codefactory.seat.model.SeatClass;
+import com.codefactory.seat.model.SeatLocation;
+import com.codefactory.seat.model.SeatStatus;
 import com.codefactory.seat.repository.SeatClassRepository;
 import com.codefactory.seat.repository.SeatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,34 +49,40 @@ public class SeatApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		SeatClass seatClass1 = new SeatClass("Turista");
-		SeatClass seatClass2 = new SeatClass("Primera Clase");
+		SeatClass seatClass1 = new SeatClass(Long.valueOf("1"), SeatClass.Type.TOURIST);
+		SeatClass seatClass2 = new SeatClass(Long.valueOf("2"), SeatClass.Type.EXECUTIVE);
+
+		SeatStatus seatStatus1 = new SeatStatus(Long.valueOf("1"), SeatStatus.Status.AVAILABLE);
+		SeatStatus seatStatus2 = new SeatStatus(Long.valueOf("2"), SeatStatus.Status.OCCUPIED);
+
+		SeatLocation center = new SeatLocation(Long.valueOf("1"), SeatLocation.Location.CENTER);
+		SeatLocation window = new SeatLocation(Long.valueOf("2"), SeatLocation.Location.WINDOW);
 
 		Seat seat1 = new Seat(
 				seatClass1,
-				"Disponible",
-				"Ventana",
+				seatStatus1,
+				center,
 				"T-1",
 				"0");
 
 		Seat seat2 = new Seat(
 				seatClass1,
-				"Disponible",
-				"Ventana",
+				seatStatus1,
+				center,
 				"T-2",
 				"0");
 		Seat seat3 = new Seat(
 				seatClass2,
-				"Disponible",
-				"Ventana",
-				"PC-1",
+				seatStatus2,
+				window,
+				"E-1",
 				"10");
 
 		seatRepository.saveAll(Arrays.asList(seat1, seat2,
 				seat3));
 		for (Seat seat : seatRepository.findAll()) {
 			logger.info(seat.getSeatLabel() + " "+
-					seat.getSeatClass().getSeatClassType());
+					seat.getSeatClass().getType().name());
 		}
 	}
 }

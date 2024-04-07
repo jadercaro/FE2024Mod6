@@ -7,10 +7,8 @@ import java.util.List;
 @Entity
 public class SeatClass {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ")
-    @SequenceGenerator(name = "SEQ", sequenceName = "SEAT_SEQ", allocationSize = 1)
-    private Long seatClassId;
-    private String seatClassType;
+    private Long id;
+    private Type type;
 
     @OneToMany(cascade=CascadeType.PERSIST, mappedBy="seatClass")
     private List<Seat> seats;
@@ -18,37 +16,37 @@ public class SeatClass {
     public SeatClass() {
     }
 
-    public SeatClass(String seatClassType) {
-        this.seatClassType = seatClassType;
+    public SeatClass(Long id, Type type) {
+        this.id = id;
+        this.type = type;
     }
 
-    public SeatClass(Long id, String seatClassType) {
-        this.seatClassId = id;
-        this.seatClassType = seatClassType;
+    public Long getId() {
+        return id;
     }
 
-    public Long getSeatClassId() {
-        return seatClassId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setSeatClassId(Long id) {
-        this.seatClassId = id;
+    public Type getType() {
+        return type;
     }
 
-    public String getSeatClassType() {
-        return seatClassType;
-    }
-
-    public void setSeatClassType(String typeClass) {
-        this.seatClassType = typeClass;
+    public void setType(Type type) {
+        this.type = type;
     }
 
     @Override
     public String toString() {
         return "SeatClass{" +
-                "seatClassId=" + seatClassId +
-                ", typeClass='" + seatClassType + '\'' +
+                "id=" + id +
+                ", type=" + type +
                 ", seats=" + seats +
                 '}';
+    }
+
+    public enum Type {
+        TOURIST, FIRST_CLASS, EXECUTIVE
     }
 }
