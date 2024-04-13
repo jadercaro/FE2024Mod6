@@ -1,6 +1,5 @@
 package com.codefactory.seat.repository;
 
-import com.codefactory.seat.model.SeatStatus;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import com.codefactory.seat.model.Seat;

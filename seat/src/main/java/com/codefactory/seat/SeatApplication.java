@@ -4,7 +4,6 @@ import com.codefactory.seat.model.Seat;
 import com.codefactory.seat.model.SeatClass;
 import com.codefactory.seat.model.SeatLocation;
 import com.codefactory.seat.model.SeatStatus;
-import com.codefactory.seat.repository.SeatClassRepository;
 import com.codefactory.seat.repository.SeatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -16,9 +15,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,9 +24,6 @@ import org.slf4j.LoggerFactory;
 public class SeatApplication implements CommandLineRunner {
 	@Autowired
 	private SeatRepository seatRepository;
-
-	@Autowired
-	private SeatClassRepository seatClassRepository;
 
 	private static final Logger logger =
 			LoggerFactory.getLogger
@@ -63,16 +57,20 @@ public class SeatApplication implements CommandLineRunner {
 		SeatLocation window = new SeatLocation(Long.valueOf("2"), SeatLocation.Location.WINDOW);
 		SeatLocation aisle = new SeatLocation(Long.valueOf("3"), SeatLocation.Location.AISLE);
 
-
+		//Ingresar número de asientos
 		int numero_asientos = 100; 
 
+		//Invocar método generador y guardar los asientos 
         List<Seat> seats = generateSeats(numero_asientos, seatClass1, seatClass2,seatClass3, seatStatus1, seatStatus2, center, window, aisle);
         seatRepository.saveAll(seats);
 
+		//imprime por consola
         for (Seat seat : seatRepository.findAll()) {
             logger.info(seat.getSeatLabel() + " " + seat.getSeatClass().getType().name());
 		}
 	}
+
+	//método generador de asientos
 	private List<Seat> generateSeats(int numero_asientos, 
 									SeatClass seatClass1, 
 									SeatClass seatClass2, 
@@ -84,12 +82,16 @@ public class SeatApplication implements CommandLineRunner {
 									SeatLocation aisle) {
         List<Seat> seats = new ArrayList<>();
 
+		//Asignamos las distribuciones generales entre clases del avión 70% para Turista
         int countSeatClass1 = (int) (0.7 * numero_asientos);
 		int countSeatClass2 = (int) (0.15 * numero_asientos);
 		int countSeatClass3 = numero_asientos-countSeatClass1-countSeatClass2;
+
+		//Asignamos las distribuciones de posición del asiento, 33% para cada clase
         int countWindow = (int) (0.33 * countSeatClass1);
         int countCenter = (int) (0.33 * countSeatClass1);
 
+		//Creamos los asientos de clase Turista
         int seatClassCounter = 1;
         for (int i = 0; i < countSeatClass1; i++) {
             SeatClass seatClass = seatClass1;
@@ -116,6 +118,8 @@ public class SeatApplication implements CommandLineRunner {
             seatClassCounter++;
         }
 		seatClassCounter = 1;
+
+		//Creamos los asientos de clase Ejecutiva
         for (int i = 0; i < countSeatClass2; i++) {
             SeatClass seatClass = seatClass2;
             SeatStatus seatStatus = seatStatus2;
@@ -145,6 +149,8 @@ public class SeatApplication implements CommandLineRunner {
 
 			seatClassCounter++;
         }
+
+		//Creamos los asientos de Primera clase
 		seatClassCounter = 1;
         for (int i = 0; i < countSeatClass3; i++) {
             SeatClass seatClass = seatClass3;

@@ -4,16 +4,10 @@ import com.codefactory.seat.model.Seat;
 import com.codefactory.seat.model.SeatStatus;
 import com.codefactory.seat.repository.SeatRepository;
 import com.codefactory.seat.repository.SeatStatusRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 @Service
 public class SeatServiceImpl implements ISeat{
@@ -42,7 +36,6 @@ public class SeatServiceImpl implements ISeat{
 
     @Override
     public List<Seat> getAvailableSeats(String status){
-        SeatStatus.Status defaultStatus;
         Long id_status;
 
         SeatStatus.Status available = SeatStatus.Status.AVAILABLE;
