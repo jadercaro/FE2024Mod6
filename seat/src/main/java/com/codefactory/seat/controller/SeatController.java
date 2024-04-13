@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @RequestMapping("/seats")
 public class SeatController {
@@ -26,9 +27,9 @@ public class SeatController {
 
     @RequestMapping("/generateSeats")
     public Iterable<Seat> generateSeats(@RequestParam String nSeats) {
-
         return generateSeats.createSeats(Integer.parseInt(nSeats));
     }
+    
 
 
 
