@@ -23,8 +23,12 @@ public class Seat {
     private SeatLocation seatLocation;
 
     @ManyToOne(cascade=CascadeType.PERSIST)
-    @JoinColumn(name="flight")
+    @JoinColumn(name="id_flight")
     private Flight flight;
+
+    @OneToOne(mappedBy = "seat")
+    private SeatxPassenger seatxPassenger;
+
     private String seatLabel;
     private String seatFee; // Recargo del asiento
 

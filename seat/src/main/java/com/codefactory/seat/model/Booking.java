@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
@@ -18,7 +21,10 @@ public class Booking {
     @SequenceGenerator(name = "SEQ", sequenceName = "BOOKING_SEQ", allocationSize = 1)
     Long id;
 
-    // Flight FK
+    @OneToMany(mappedBy = "booking", cascade = CascadeType.PERSIST)
+    private List<Passenger> passengerList = new ArrayList<>();
 
-
+    @ManyToOne(cascade=CascadeType.PERSIST)
+    @JoinColumn(name = "id_flight")
+    private Flight flight;
 }
