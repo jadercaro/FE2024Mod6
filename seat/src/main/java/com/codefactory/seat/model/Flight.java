@@ -26,4 +26,7 @@ public class Flight {
     @JsonIgnore
     @OneToMany(mappedBy = "flight", cascade = CascadeType.PERSIST)
     private List<Seat> seatList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "flight", cascade = CascadeType.PERSIST)
+    private List<Booking> bookingList;
 }

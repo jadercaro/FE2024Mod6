@@ -3,6 +3,9 @@ package com.codefactory.seat.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
@@ -17,5 +20,12 @@ public class Passenger {
     @SequenceGenerator(name = "SEQ", sequenceName = "PASSENGER_SEQ", allocationSize = 1)
     Long id;
 
+    @ManyToOne(cascade=CascadeType.PERSIST)
+    @JoinColumn(name = "id_booking")
+    private Booking booking;
 
+    @OneToOne(mappedBy = "passenger", cascade = CascadeType.PERSIST)
+    private SeatxPassenger seatxPassenger;
+
+    private String name;
 }
