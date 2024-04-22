@@ -1,5 +1,6 @@
 package com.codefactory.seat.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -20,6 +21,10 @@ public class Seat {
     @ManyToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name="seatLocation")
     private SeatLocation seatLocation;
+
+    @ManyToOne(cascade=CascadeType.PERSIST)
+    @JoinColumn(name="flight")
+    private Flight flight;
     private String seatLabel;
     private String seatFee; // Recargo del asiento
 
