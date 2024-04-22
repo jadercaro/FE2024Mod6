@@ -5,13 +5,11 @@ import com.codefactory.seat.service.IGenerateSeats;
 import com.codefactory.seat.service.ISeat;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/seats")
+@RequestMapping("/api/seats")
 public class SeatController {
 
     @Autowired
@@ -20,15 +18,17 @@ public class SeatController {
     @Autowired
     private IGenerateSeats generateSeats;
 
-    @RequestMapping("/getAvailableSeats")
-    public Iterable<Seat> getAvailableSeats(@RequestParam String status) {
-        return seatService.getAvailableSeats(status.toUpperCase());
+    @RequestMapping(value = "/getAvailableSeats", method = RequestMethod.GET)
+    public Iterable<Seat> getAvailableSeats() {
+        return seatService.getAvailableSeats("AVAILABLE");
     }
 
-    @RequestMapping("/generateSeats")
+    @RequestMapping(value = "/generateSeats", method = RequestMethod.POST)
     public Iterable<Seat> generateSeats(@RequestParam String nSeats) {
         return generateSeats.createSeats(Integer.parseInt(nSeats));
     }
+
+
     
 
 
