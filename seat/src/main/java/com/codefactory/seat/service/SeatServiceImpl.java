@@ -1,9 +1,7 @@
 package com.codefactory.seat.service;
 
 import com.codefactory.seat.model.Seat;
-import com.codefactory.seat.model.SeatStatus;
 import com.codefactory.seat.repository.SeatRepository;
-import com.codefactory.seat.repository.SeatStatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -15,8 +13,6 @@ public class SeatServiceImpl implements ISeat{
     @Autowired
     private SeatRepository seatRepository;
 
-    @Autowired
-    private SeatStatusRepository seatStatusRepository;
 
     @Override
     public Double getTotalFee() {
@@ -35,20 +31,10 @@ public class SeatServiceImpl implements ISeat{
 
 
     @Override
-    public List<Seat> getAvailableSeats(String status){
-        Long id_status;
-
-        SeatStatus.Status available = SeatStatus.Status.AVAILABLE;
-
+    public List<Seat> getAvailableSeats(Long flightid){
         try {
-
-            if (status.equalsIgnoreCase(available.name())){
-                id_status = seatStatusRepository
-                        .getIdByStatus(available);
-                return seatRepository.getAvailableSeats(id_status);
-            } else {
-                throw new IllegalArgumentException();
-            }
+            return seatRepository.getAvailableSeats(flightid);
+            
         } catch (IllegalArgumentException ex) {return null;}
     }
 

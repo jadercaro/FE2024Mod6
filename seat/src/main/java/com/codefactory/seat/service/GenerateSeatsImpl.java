@@ -1,9 +1,11 @@
 package com.codefactory.seat.service;
 
+import com.codefactory.seat.model.Flight;
 import com.codefactory.seat.model.Seat;
 import com.codefactory.seat.model.SeatClass;
 import com.codefactory.seat.model.SeatLocation;
 import com.codefactory.seat.model.SeatStatus;
+import com.codefactory.seat.repository.FlightRepository;
 import com.codefactory.seat.repository.SeatRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +23,12 @@ public class GenerateSeatsImpl implements IGenerateSeats{
     @Autowired
     private SeatRepository seatRepository;
 
+    @Autowired
+    private FlightRepository flightRepository;
+
     //Método para generar una lista de asientos recibiendo la cantidad de asientos a crear
     @Override
-    public Iterable<Seat> createSeats(int nSeats) {
+    public Iterable<Seat> createSeats(int nSeats, Long flightId) {
 
 
 
@@ -39,6 +44,9 @@ public class GenerateSeatsImpl implements IGenerateSeats{
         SeatLocation center = new SeatLocation(Long.valueOf("1"), SeatLocation.Location.CENTER);
         SeatLocation window = new SeatLocation(Long.valueOf("2"), SeatLocation.Location.WINDOW);
         SeatLocation aisle = new SeatLocation(Long.valueOf("3"), SeatLocation.Location.AISLE);
+
+        //Se obtiene el vuelo al cual le crearemos los asientos
+        Flight flight = flightRepository.findById(flightId).orElse(null);
 
         //Inicializamos la lista de asientos
         List<Seat> seats = new ArrayList<>();
@@ -73,7 +81,7 @@ public class GenerateSeatsImpl implements IGenerateSeats{
             String seatLabel = "T-" + seatClassCounter;
             String priceString = String.valueOf(price);
 
-            Seat seat = new Seat(seatClass, seatStatus, seatType, seatLabel, priceString);
+            Seat seat = new Seat(seatClass, seatStatus, seatType, seatLabel, priceString, flight);
             seats.add(seat);
 
             seatClassCounter++;
@@ -105,7 +113,7 @@ public class GenerateSeatsImpl implements IGenerateSeats{
 
 			seatLabel = "E-" + seatClassCounter;
 			String priceString = String.valueOf(price);
-            Seat seat = new Seat(seatClass, seatStatus, seatType, seatLabel, priceString);
+            Seat seat = new Seat(seatClass, seatStatus, seatType, seatLabel, priceString, flight);
             seats.add(seat);
 
 			seatClassCounter++;
@@ -137,7 +145,7 @@ public class GenerateSeatsImpl implements IGenerateSeats{
 
 			seatLabel = "F-" + seatClassCounter;
 			String priceString = String.valueOf(price);
-            Seat seat = new Seat(seatClass, seatStatus, seatType, seatLabel, priceString);
+            Seat seat = new Seat(seatClass, seatStatus, seatType, seatLabel, priceString, flight);
             seats.add(seat);
 
 			seatClassCounter++;

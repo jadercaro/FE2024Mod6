@@ -21,13 +21,14 @@ public class SeatController {
     private IGenerateSeats generateSeats;
 
     @RequestMapping("/getAvailableSeats")
-    public Iterable<Seat> getAvailableSeats(@RequestParam String status) {
-        return seatService.getAvailableSeats(status.toUpperCase());
+    public Iterable<Seat> getAvailableSeats(@RequestParam String flightid) {
+        return seatService.getAvailableSeats(Long.parseLong(flightid));
     }
 
     @RequestMapping("/generateSeats")
-    public Iterable<Seat> generateSeats(@RequestParam String nSeats) {
-        return generateSeats.createSeats(Integer.parseInt(nSeats));
+    public Iterable<Seat> generateSeats(@RequestParam String nSeats,
+                                        @RequestParam String flight) {
+        return generateSeats.createSeats(Integer.parseInt(nSeats), Long.parseLong(flight));
     }
     
 

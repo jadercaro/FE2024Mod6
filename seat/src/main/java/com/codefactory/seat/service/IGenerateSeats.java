@@ -5,5 +5,5 @@ import com.codefactory.seat.model.Seat;
 
 public interface IGenerateSeats {
 
-    Iterable<Seat> createSeats(int nSeats);
+    Iterable<Seat> createSeats(int nSeats, Long flightId);
 }

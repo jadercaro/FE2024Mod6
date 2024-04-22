@@ -8,6 +8,7 @@ public class Seat {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ")
     @SequenceGenerator(name = "SEQ", sequenceName = "SEAT_SEQ", allocationSize = 1)
+    @Column(name="id", nullable = false)
     private Long id;
 
     @ManyToOne(cascade=CascadeType.PERSIST)
@@ -17,9 +18,20 @@ public class Seat {
     @ManyToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name="seatStatus")
     private SeatStatus seatStatus;
+
     @ManyToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name="seatLocation")
     private SeatLocation seatLocation;
+
+    @ManyToOne(cascade=CascadeType.PERSIST)
+    @JoinColumn(name="booking")
+    private Booking booking;
+
+    @ManyToOne(cascade=CascadeType.PERSIST)
+    @JoinColumn(name="flight")
+    private Flight flight;
+
+    
     private String seatLabel;
     private String seatFee; // Recargo del asiento
 
@@ -44,12 +56,14 @@ public class Seat {
                 SeatStatus seatStatus,
                 SeatLocation seatLocation,
                 String seatLabel,
-                String seatFee) {
+                String seatFee,
+                Flight flight) {
         this.seatClass = seatClass;
         this.seatStatus = seatStatus;
         this.seatLocation = seatLocation;
         this.seatLabel = seatLabel;
         this.seatFee = seatFee;
+        this.flight = flight;
     }
 
     public Long getId() {
