@@ -8,5 +8,5 @@ public interface ISeat {
      Double getTotalFee();
      Double getSeatFee();
      void assignSeatsRandomly();
-     List<Seat> getAvailableSeats(String status);
+     List<Seat> getAvailableSeats(Long flightid);
 }

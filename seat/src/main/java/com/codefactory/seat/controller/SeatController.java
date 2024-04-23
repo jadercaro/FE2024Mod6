@@ -19,8 +19,8 @@ public class SeatController {
     private IGenerateSeats generateSeats;
 
     @RequestMapping(value = "/getAvailableSeats", method = RequestMethod.GET)
-    public Iterable<Seat> getAvailableSeats() {
-        return seatService.getAvailableSeats("AVAILABLE");
+    public Iterable<Seat> getAvailableSeats(@RequestParam String flightid) {
+        return seatService.getAvailableSeats(Long.parseLong(flightid));
     }
 
     @RequestMapping(value = "/generateSeats", method = RequestMethod.POST)
