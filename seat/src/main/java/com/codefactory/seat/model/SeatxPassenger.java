@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="SeatPassenger")
+@Table
 public class SeatxPassenger {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ")
@@ -24,4 +24,11 @@ public class SeatxPassenger {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_seat")
     private Seat seat;
+
+    public SeatxPassenger(Passenger passenger) {
+        this.passenger = passenger;
+    }
+
+    
+    
 }

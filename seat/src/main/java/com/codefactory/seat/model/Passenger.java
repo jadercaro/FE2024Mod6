@@ -3,8 +3,6 @@ package com.codefactory.seat.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
@@ -12,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table
+@Table(name="Passenger")
 public class Passenger {
 
     @Id

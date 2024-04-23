@@ -9,7 +9,6 @@ import java.util.List;
 
 public interface SeatRepository extends CrudRepository<Seat,Long> {
 
-    // Fetch cars by brand
     @Query("select s from Seat s where s.seatStatus.id = 1 and s.flight.id = :flightid")
     List<Seat> getAvailableSeats(@Param("flightid") Long flightid);
 }

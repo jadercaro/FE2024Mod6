@@ -24,8 +24,8 @@ public class SeatController {
     }
 
     @RequestMapping(value = "/generateSeats", method = RequestMethod.POST)
-    public Iterable<Seat> generateSeats(@RequestParam String nSeats) {
-        return generateSeats.createSeats(Integer.parseInt(nSeats));
+    public Iterable<Seat> generateSeats(@RequestParam String nSeats, @RequestParam String flight) {
+        return generateSeats.createSeats(Integer.parseInt(nSeats), Long.parseLong(flight));
     }
 
 

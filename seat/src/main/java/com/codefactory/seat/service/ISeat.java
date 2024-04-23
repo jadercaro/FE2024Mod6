@@ -9,4 +9,5 @@ public interface ISeat {
      Double getSeatFee();
      void assignSeatsRandomly();
      List<Seat> getAvailableSeats(Long flightid);
+     void unavaibleSeat(Long seatId);
 }

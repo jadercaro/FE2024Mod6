@@ -2,7 +2,6 @@ package com.codefactory.seat.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -29,4 +29,7 @@ public class Flight {
 
     @OneToMany(mappedBy = "flight", cascade = CascadeType.PERSIST)
     private List<Booking> bookingList;
+    
+
+
 }

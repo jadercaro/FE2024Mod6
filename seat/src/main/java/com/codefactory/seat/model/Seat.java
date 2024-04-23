@@ -1,6 +1,5 @@
 package com.codefactory.seat.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -53,12 +52,14 @@ public class Seat {
                 SeatStatus seatStatus,
                 SeatLocation seatLocation,
                 String seatLabel,
-                String seatFee) {
+                String seatFee,
+                Flight flight) {
         this.seatClass = seatClass;
         this.seatStatus = seatStatus;
         this.seatLocation = seatLocation;
         this.seatLabel = seatLabel;
         this.seatFee = seatFee;
+        this.flight = flight;
     }
 
     public Long getId() {
